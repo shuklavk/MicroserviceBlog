@@ -1,6 +1,6 @@
 # MicroserviceBlog
 
-In this project, I wanted to dive into the world of microservice. I also wanted to continue using the GraphQL API. Overall, my project has four services: Post, Comment, Query, Moderation. I also learned the concept behind an "event" bus and implemented my own simple version. Used React for the client. Finally, since this was a simple project, just used a json-server to store data. 
+In this project, I wanted to dive into the world of microservice. I also wanted to continue using the GraphQL API. Overall, my project has four services: Post, Comment, Query, Moderation. I also learned the concept behind an "event bus" and implemented my own simple version. Used React for the client. Finally, since this was a simple project, just used a json-server to store data. 
 
 Here is how my client looked: 
 
