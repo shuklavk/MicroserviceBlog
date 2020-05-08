@@ -1,0 +1,39 @@
+{
+  "posts": [
+    {
+      "id": "85c55b8c"
+    }
+  ],
+  "comments": [
+    {
+      "id": "c7edbb02",
+      "content": "Regular Comment about Post",
+      "status": "approved",
+      "postId": "85c55b8c"
+    },
+    {
+      "id": "8144627a",
+      "content": "Regular Comment with the word orange",
+      "status": "rejected",
+      "postId": "85c55b8c"
+    },
+    {
+      "id": "7fabca63",
+      "content": "Comment query 1",
+      "status": "approved",
+      "postId": "85c55b8c"
+    },
+    {
+      "id": "ba4b1e55",
+      "content": "comment query 2 ",
+      "status": "approved",
+      "postId": "85c55b8c"
+    },
+    {
+      "id": "fe43005e",
+      "content": "orange",
+      "status": "rejected",
+      "postId": "85c55b8c"
+    }
+  ]
+}
