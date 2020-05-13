@@ -28,3 +28,6 @@ Here is how my client looked:
  * Learned how to update all services after they turn off and some events happen in between that they missed
     * In event bus, kept an array of events that had happend, and the query service would go through all the events in that array after starting.
  * Got more experience with GraphQL API 
+
+
+** CURRENTLY WORKING ON USING DOCKER/KUBERNETES ON THIS PROJECT **
