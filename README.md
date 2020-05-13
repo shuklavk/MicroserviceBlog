@@ -1,6 +1,6 @@
 # MicroserviceBlog
 
-In this project, I wanted to dive into the world of microservice. I also wanted to continue using the GraphQL API. Overall, my project has four services: Post, Comment, Query, Moderation. I also learned the concept behind an "event bus" and implemented my own simple version. Used React for the client. Finally, since this was a simple project, just used a json-server to store data. 
+In this project, I wanted to dive into the world of microservice. I also wanted to continue using the GraphQL API. Overall, my project has four services: Post, Comment, Query, Moderation. I also learned the concept behind an "event bus" and implemented my own simple version. Used React for the client. Since this was a simple project, just used a json-server to store data. Finally, I wanted to learn to use Docker and Kubernetes, so I Dockerized each service and placed them in seperate pods in a local Kubernetes node.  
 
 Here is how my client looked: 
 
@@ -27,7 +27,8 @@ Here is how my client looked:
    * User Creates new comment -> Comment Service emits "CommentCreated" event to all other services -> Moderation service picks up event, moderates its content and emits "CommentModerated" to every service -> Comments Service recieves "CommentModerated" event and updates the comment content and emits "CommentUpdated" event to every service -> Query service picks up the "CommentUpdated" event, and updates that specific comment, which is being displayed on the client   
  * Learned how to update all services after they turn off and some events happen in between that they missed
     * In event bus, kept an array of events that had happend, and the query service would go through all the events in that array after starting.
+ * Learned how to Dockerize each of my services
+ * Learned how to use Kubernetes to manage each service using **Deployments** and wire them together using **Services** (Using Cluster IP)
+    * Used **ingress-nginx** for load balancing purposes
  * Got more experience with GraphQL API 
 
-
-** CURRENTLY WORKING ON USING DOCKER/KUBERNETES ON THIS PROJECT **
