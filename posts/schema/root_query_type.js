@@ -27,6 +27,7 @@ const RootQuery = new GraphQLObjectType({
         type:{type:GraphQLString}
       },
       resolve(parentValue, args){
+        console.log('Recieved EVENT ')
         return {id};
       }
     }

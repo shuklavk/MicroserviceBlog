@@ -15,23 +15,26 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, {postId, content}){
         let id = randomBytes(4).toString('hex');
-        return axios.post(`http://localhost:3002/posts`, {"id":postId})
-        .then((resp)=> {
-          return axios.post(`http://localhost:3002/posts/${postId}/comments`, {id,content, status:"pending"})
-          .then((resp) => { 
-            console.log(resp.data); 
-            return axios.post(`http://localhost:4005/events`, {type:"CommentCreated", data:resp.data})
+        let data = {id, postId, content, status:"pending"}
+        return axios.post(`http://event-bus-srv:4005/events`, {type:"CommentCreated", data})
             .then(resp =>resp.data);
-          })
-        })
-        .catch((err) => {
-          return axios.post(`http://localhost:3002/posts/${postId}/comments`, {id,content, status:"pending"})
-          .then((resp) => { 
-            console.log(resp.data); 
-            return axios.post(`http://localhost:4005/events`, {type:"CommentCreated", data:resp.data})
-            .then(resp =>resp.data);
-          })
-        })
+        // return axios.post(`http://localhost:3002/posts`, {"id":postId})
+        // .then((resp)=> {
+        //   return axios.post(`http://localhost:3002/posts/${postId}/comments`, {id,content, status:"pending"})
+        //   .then((resp) => { 
+        //     console.log(resp.data); 
+        //     return axios.post(`http://localhost:4005/events`, {type:"CommentCreated", data:resp.data})
+        //     .then(resp =>resp.data);
+        //   })
+        // })
+        // .catch((err) => {
+        //   return axios.post(`http://localhost:3002/posts/${postId}/comments`, {id,content, status:"pending"})
+        //   .then((resp) => { 
+        //     console.log(resp.data); 
+        //     return axios.post(`http://localhost:4005/events`, {type:"CommentCreated", data:resp.data})
+        //     .then(resp =>resp.data);
+        //   })
+        // })
       }
     }
   })

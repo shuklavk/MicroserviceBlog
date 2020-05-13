@@ -10,7 +10,7 @@ app.use(cors());
 const port = 4000
 
 
-app.use('/graphql', expressGraphQL({
+app.use('/graphqlPost', expressGraphQL({
   schema,
   graphiql:true
 }))
@@ -21,4 +21,6 @@ app.post('/events', (req, res)=>{
   res.send({})
 })
 
-app.listen(port, () => console.log(`Listening at http://localhost:${port}`))
+app.listen(port, () => {
+  console.log('v10000');
+  console.log(`Listening at http://localhost:${port}`)})

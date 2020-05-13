@@ -13,12 +13,15 @@ const mutation = new GraphQLObjectType({
         title: {type:GraphQLString}
       },
       resolve(parentValue, args){
-        let id = randomBytes(4).toString('hex');
-        return axios.post(`http://localhost:3003/posts`, {id, title:args.title})
-        .then((resp) => {
-          return axios.post(`http://localhost:4005/events`, {type:"PostCreated", data:resp.data})
-          .then(resp => resp.data)
-        });
+        const id = randomBytes(4).toString('hex');
+        const data= {title: args.title, id}
+        return axios.post(`http://event-bus-srv:4005/events`, {type:"PostCreated", data})
+          .then(res => res.data)
+        // return axios.post(`http://localhost:3003/posts`, {id, title:args.title})
+        // .then((resp) => {
+        //   return axios.post(`http://event-bus-srv:4005/events`, {type:"PostCreated", data:resp.data})
+        //   .then(resp => resp.data)
+        // });
       }
     }
   }

@@ -6,7 +6,7 @@ export default ({postId})=>{
 
   const onSubmit = async (e) =>{
     e.preventDefault();
-    await axios.post(`http://localhost:4001/graphql?query=mutation{postComment(postId:"${postId}", content:"${content}"){id content}}`);
+    await axios.post(`http://posts.com/graphql?query=mutation{postComment(postId:"${postId}", content:"${content}"){id content}}`);
     setContent('');
   }
   return (

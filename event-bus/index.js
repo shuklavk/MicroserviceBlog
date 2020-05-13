@@ -17,6 +17,7 @@ const events = [];
 // }
 app.post("/events", (req,res)=>{
   const event = req.body;
+  console.log('event: ', event);
   events.push(event);
   let query = "";
   if(event.type === "PostCreated"){
@@ -32,18 +33,18 @@ app.post("/events", (req,res)=>{
       "variables": {"type" : event.type, "id": event.data.id, "content":event.data.content, "postId":event.data.postId, "status":event.data.status}
     }
   }
-  axios.post(`http://localhost:4000/graphql`, query)
+  axios.post(`http://posts-clusterip-srv:4000/graphql`, query)
   // .then(resp => console.log("Data from Post Service:", resp.data))
   .catch(e => {
     console.log("ERROR IN POST")
   })
-  axios.post(`http://localhost:4001/graphql`, query)
+  axios.post(`http://comments-srv:4001/graphql`, query)
   .then(resp => console.log("Data from Comment Service:", resp.data))
   .catch(e => {
     console.log('ERROR IN COMMENT');
   });
-  axios.post(`http://localhost:4002/events`, event);
-  axios.post(`http://localhost:4003/events`, event);
+  axios.post(`http://query-srv:4002/events`, event);
+  axios.post(`http://moderation-srv:4003/events`, event);
 
   res.send({status:"OK"}); 
 })

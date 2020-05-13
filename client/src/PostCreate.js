@@ -7,7 +7,7 @@ export default () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    await axios.post(`http://localhost:4000/graphql?query=mutation{addPost(title:"${title}"){id,title}}`)
+    await axios.post(`http://posts.com/graphqlPost?query=mutation{addPost(title:"${title}"){id,title}}`)
     setTitle('')
 
   }

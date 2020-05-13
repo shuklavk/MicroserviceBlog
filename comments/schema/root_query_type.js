@@ -34,42 +34,26 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parentValue, {id, title, content, type, status, postId}){
         if(type === "CommentModerated"){
-          return axios.patch(`http://localhost:3002/comments/${id}`, {status})
-          .then(resp => {
-            return axios.post(`http://localhost:4005/events`, {type: 'CommentUpdated', data:resp.data})
+          const data = {id, content, postId, status}
+          return axios.post(`http://event-bus-srv:4005/events`, {type: 'CommentUpdated', data})
             .then(resp => {
               console.log('sending moderated data:', resp.data);
               return resp.data
             });
-          })
+          // return axios.patch(`http://localhost:3002/comments/${id}`, {status})
+          // .then(resp => {
+          //   return axios.post(`http://localhost:4005/events`, {type: 'CommentUpdated', data:resp.data})
+          //   .then(resp => {
+          //     console.log('sending moderated data:', resp.data);
+          //     return resp.data
+          //   });
+          // })
         }else{
+          console.log("EVENT RECIEVED:", type);
           return {id}
         }
       }
     }
-    // postEvent: {
-    //   type: PostType,
-    //   args: {
-    //     type: { type: GraphQLString },
-    //     id: { type: GraphQLID },
-    //     title: {type: GraphQLString}
-    //   },
-    //   resolve(parentValue, { type, id, title }) {
-    //     return {id, title};
-    //   }
-    // },
-    // commentEvent: {
-    //   type: CommentType,
-    //   args: {
-    //     type:{type: GraphQLString},
-    //     id:{type:GraphQLID},
-    //     postId: {type:GraphQLID},
-    //     content: {type: GraphQLString}
-    //   },
-    //   resolve(parentValue, {type, id, postId, content}){
-    //     return {id}
-    //   }
-    // }
   })
 })
 
